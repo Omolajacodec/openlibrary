@@ -380,7 +380,7 @@ class Test_update_items():
         assert isinstance(requests, list)
         assert isinstance(requests[0], update_work.UpdateRequest)
         assert requests[0].toxml().startswith(b'<add>')
-        assert '<field name="key">/authors/OL25A</field>' in requests[0].toxml()
+        assert b'<field name="key">/authors/OL25A</field>' in requests[0].toxml()
 
     def test_delete_edition(self):
         editions = update_work.update_edition({'key': '/books/OL23M', 'type': {'key': '/type/delete'}})
@@ -396,7 +396,7 @@ class Test_update_items():
         assert isinstance(del_req, update_work.DeleteRequest)
         assert del_req.toxml().startswith(b"<delete>")
         for olid in olids:
-            assert "<query>key:%s</query>" % olid in del_req.toxml()
+            assert b"<query>key:%s</query>" % olid in del_req.toxml()
 
 
 class TestUpdateWork:
